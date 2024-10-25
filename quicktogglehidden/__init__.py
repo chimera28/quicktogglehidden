@@ -13,10 +13,12 @@ class QuickToggleHidden(Extension):
         print("QuickToggleHidden Setup")
         
     def toggleHide(self, colIndex:int) :
-        nodes = Application.activeDocument().topLevelNodes()
+        document = Krita.instance().activeDocument()
+        nodes = document.topLevelNodes()
         self.visbleSet = None
         self.currentDepth = 0
         self.toggleHideLoop(nodes, colIndex)
+        document.refreshProjection()
     
     def toggleHideLoop(self, nodes, colIndex) :
         for node in nodes:
@@ -26,6 +28,7 @@ class QuickToggleHidden(Extension):
                     if self.visbleSet is None:
                         self.visbleSet = not node.visible()
                     node.setVisible(self.visbleSet)
+                    Krita.instance().activeDocument().waitForDone()
                 if node.childNodes() and (self.currentDepth < self.maxDepth):
                     self.toggleHideLoop(node.childNodes(), colIndex)
     
