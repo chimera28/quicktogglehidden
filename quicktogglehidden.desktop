@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Service
+ServiceTypes=Krita/PythonPlugin
+X-KDE-Library=quicktogglehidden
+X-Python-2-Compatible=false
+X-Krita-Manual=Manual.html
+Name=Quick Toggle Hidden Script
+Comment=Hide Layers and folder by label color with keyboard shortcuts
